@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+{% block title %}
+Home
+{% endblock %}
+{% block content %}
+
+<div style="float:right;"><div style="padding: 0.4em; background:#145;  text-align:center; margin-left:3.5%;"><a href="{{url_for('download')}}" style="text-decoration: none; color: #ccc;"><span style="font-size: 1.55em; font-family: immortal;">Download</span><br /><span style="font-family: LinBiolinum;">Current Version (v1.0a)</span></a></div>
+<img src="{{url_for('static', filename='youmu.png')}}" alt="Youmu" /></div>
+<img id="slideshow" width="400" height="300" title="Kurumi" alt="Kurumi" src="http://www.abload.de/img/taisei_kurumi1epik8.png" />
+<br />
+<span style="clear: both;"/><br />
+Taisei (lit. Occident) is an fan-made Open Source clone of the Touhou series, written in C using SDL/OpenGL/OpenAL.
+<br /><br />
+<h2>IRC and other Contact</h2>
+Visit <a href="irc://irc.freenode.net:6667/taisei-project">#taisei-project</a> on Freenode
+{% endblock %}

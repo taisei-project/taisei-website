@@ -1,3 +1,5 @@
+#!/usr/bin/env python2
+
 from flask import Flask, url_for, Markup
 from flask import render_template
 import os
@@ -42,7 +44,7 @@ def load_news():
 	news.reverse()
 	return news
 
-@app.route('/index')
+@app.route('/')
 def index():
 	return render_template('home.html', navigation=get_navigation())
 

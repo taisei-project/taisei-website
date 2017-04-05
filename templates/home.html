@@ -1,6 +1,6 @@
 {% extends "main.html" %}
 {% block title %}
-Home
+Taisei Project
 {% endblock %}
 {% block content %}
 
@@ -16,8 +16,18 @@ Home
 <img id="slideshow" width="400" height="300" title="Kurumi" alt="Kurumi" src="{{url_for('static', filename='media/taisei_kurumi.png')}}" />
 <br />
 <span style="clear: both;"/><br />
-    Taisei (lit. Occident) is a fan-made Open Source clone of the Touhou series, written in C using SDL/OpenGL/OpenAL.
+	Taisei (lit. Occident) is a fan-made Open Source clone of the <a href="https://en.wikipedia.org/wiki/Touhou_Project">Touhou series</a>, written in C using SDL/OpenGL/OpenAL.
+	<br/><br/>
+	Basically, it is a shoot ’em up game with lots of bullets (the genre is literally called <i>bullet hell</i>). The game is mostly done and very playable, so feel free to give it a try!
+	<br/><br/>
+	(<b>Important:</b> Version 1.0a is outdated and will soon be replaced by new, much better release.)
+
 <br /><br />
 <h2>IRC and other Contact</h2>
-Visit <a href="irc://irc.freenode.net:6667/taisei-project">#taisei-project</a> on Freenode
+You can
+<ul>
+	<li>visit <a href="irc://irc.freenode.net:6667/taisei-project">#taisei-project</a> on Freenode</li>
+	<li>create an issue on <a href="https://github.com/laochailan/taisei">Github</a> (You don’t have to be a developer to do this).</li>
+	<li>write <tt>Laochailan &lt;laochailan[at]web.de&gt;</tt> a mail.</tt>
+</ul>
 {% endblock %}

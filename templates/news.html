@@ -1,6 +1,7 @@
 {% extends "main.html" %}
 {% block title %}News{% endblock %}
 {% block content %}
+<a href="/news.atom" class="feed">News feed</a>
 <h1>News</h1>
 {% for n in news %}
 <div class="article">

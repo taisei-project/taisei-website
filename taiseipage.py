@@ -2,6 +2,10 @@
 
 from flask import Flask, url_for, Markup
 from flask import render_template
+from flask import request
+from urlparse import urljoin
+from werkzeug.contrib.atom import AtomFeed
+import datetime
 import os
 import markdown
 
@@ -25,8 +29,8 @@ def get_navigation():
 
 def load_news_file(filename):
 	f = open(filename, 'r');
-	date = f.readline()
-	title = f.readline()
+	date = f.readline().strip('\n')
+	title = f.readline().strip('\n')
 	content = f.read().decode('utf8')
 	content = Markup(markdown.markdown(content))
 	f.close()
@@ -44,6 +48,9 @@ def load_news():
 	news.reverse()
 	return news
 
+def make_external(url):
+    return urljoin(request.url_root, url)
+
 @app.route('/')
 def index():
 	return render_template('home.html', navigation=get_navigation())
@@ -51,6 +58,22 @@ def index():
 @app.route('/news')
 def news():
 	return render_template('news.html', navigation=get_navigation(), news=load_news())
+
+@app.route('/news.atom')
+def newsfeed():
+    news = load_news()
+    feed = AtomFeed('The State of Taisei',
+            feed_url=request.url, url=request.url_root)
+    for article in news:
+        date = datetime.datetime.strptime(article[0],'%Y-%m-%d %H:%M')
+        feed.add(article[1], unicode(article[2]),
+                content_type='html',
+                author="Taisei team",
+                url=make_external("/news/"+article[3]),
+                updated=date,
+                published=date)
+    return feed.get_response()
+
 
 @app.route('/news/<filename>')
 def news_entry(filename):
@@ -66,6 +89,6 @@ def media():
 def download():
 	return render_template('download.html', navigation=get_navigation())
 
-#if __name__ == "__main__":
-	#app.debug = True
-	#app.run()
+if __name__ == "__main__":
+	app.debug = True
+	app.run()

@@ -2,14 +2,9 @@
 {% block title %}Download{% endblock %}
 {% block content %}
 <h1>Download</h1>
-<h2>Source</h2>
-<h3>Stable</h3>
-<ul>
-	<li><a href="https://github.com/laochailan/taisei/tarball/v1.0a">v1.0a</a> (This version is very <b>outdated</b>. A new release will arrive soon.)</li>
-</ul>
-<h3>Unstable</h3>
-<tt>git clone <a href="https://github.com/laochailan/taisei">https://github.com/laochailan/taisei</a></tt>
-<hr />
+<p>We have some binaries for Windows and OS X. For Linux, you can either look for a package in your distribution or build Taisei from <a href="#source">source</a> (Should be pretty straightforward).</p>
+<p>If you find any mistakes, please contact us.</p>
+
 <h2>Windows</h2>
 <h3>Stable</h3>
 <ul>
@@ -17,19 +12,27 @@
 <li><a href="{{url_for('static', filename='downloads/win/taisei-v1.0a-i686.7z')}}">v1.0a 32bit</a></li>
 (This version is very <b>outdated</b>. A new release will arrive soon.)
 </ul>
-<h3>Unstable</h3>
-There is no unstable build at the moment.
 <hr />
 <h2>Linux</h2>
 <h3>Arch Linux</h3>
 There are <a href="https://aur.archlinux.org/packages/taisei/"><tt>taisei</tt></a> and <a href="https://aur.archlinux.org/packages/taisei-git/"><tt>taisei-git</tt></a> PKGBUILDs available on <a href="http://aur.archlinux.org/">AUR</a>.
 <h3>Other</h3>
-You are welcome to package Taisei for your distribution, otherwise grab the source or build from git. See README for instructions.
+<p>At the moment, there are no official Taisei packages for other distributions. If you feel like packaging this, let us know so we can link you here.</p>
+<p>But you can always build Taisei from <a href="#source">source</a>.</p>
 <hr />
 <h2>Mac OS X</h2>
 The Mac build is (really) not considered stable yet and might not work.
 <ul>
 <li><a href="http://akari.thebadasschoobs.org/taisei/taisei-1.0a-osx.zip">v1.0a</a></li>
 </ul>
+<hr />
+<h2 id="source">Get the Source</h2>
+Building Taisei is easy (if you are on Linux). Download the source code and follow the instructions in <tt>README.md</tt>. Feel free to contact us if you have problems.
+<h3>Stable</h3>
+<ul>
+	<li><a href="https://github.com/laochailan/taisei/tarball/v1.0a">v1.0a</a> (This version is very <b>outdated</b>. A new release will arrive soon.)</li>
+</ul>
+<h3>Unstable</h3>
+<tt>git clone <a href="https://github.com/laochailan/taisei">https://github.com/laochailan/taisei</a></tt>
 
 {% endblock %}

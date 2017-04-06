@@ -12,6 +12,7 @@ import markdown
 app = Flask(__name__)
 
 news_dir = 'news'
+screens_dir = 'static/screenshots'
 
 class NavEntry():
 	def __init__(self, name, href):
@@ -23,7 +24,7 @@ def get_navigation():
 		NavEntry('Home', url_for('index')),
 		NavEntry('News', url_for('news')),
 		NavEntry('Media', url_for('media')),
-		NavEntry('Development', 'http://github.com/laochailan/taisei'),
+		NavEntry('Github', 'http://github.com/laochailan/taisei'),
 		NavEntry('Download', url_for('download'))
 	]
 
@@ -47,6 +48,20 @@ def load_news():
 	news.sort(key=lambda x: x[0])
 	news.reverse()
 	return news
+
+def load_screendirs():
+	dirs = []
+	l = os.listdir(screens_dir)
+
+	for fn in l:
+                num,caption = fn.split("_")
+	        screens = os.listdir(screens_dir+'/'+fn)
+		dirs.append((int(num), caption, fn, screens))
+
+	dirs.sort(key=lambda x: x[0])
+	dirs.reverse()
+
+	return dirs
 
 def make_external(url):
     return urljoin(request.url_root, url)
@@ -83,7 +98,8 @@ def news_entry(filename):
 
 @app.route('/media')
 def media():
-	return render_template('media.html', navigation=get_navigation())
+        dirs = load_screendirs()
+	return render_template('media.html', navigation=get_navigation(), dirs=dirs)
 
 @app.route('/download')
 def download():

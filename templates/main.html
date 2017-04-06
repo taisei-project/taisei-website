@@ -1,13 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html />
+<html>
 <head>
 <title>{%block title%}{%endblock%}</title>
 <link rel="alternate" type="application/atom+xml" title="News" href="/news.atom" />
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}" />
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-<!-- <script language="JavaScript" src="slideshow.js" > -->
-<!-- </script> -->
 
 </head>
 <body>
@@ -17,16 +14,13 @@
 
 <div id="nav">
 {% for e in navigation %}
-	<a href="{{ e.href }}"><span>{{e.name}}</span></a>
+<a href="{{ e.href }}"><span><b>{{e.name}}</b></span></a>
 {% endfor %}
 </div>
 
 <div id="content">
 {%block content %}
 {%endblock%}
-</div>
-<div id="footer">
-<span>Powered by PythonFlask</span>
 </div>
 
 </body>

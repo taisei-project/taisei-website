@@ -2,37 +2,20 @@
 {% block title %}Media{% endblock %}
 
 {% macro screenshot(name, desc='Taisei Screenshot', width=400, height=300) -%}
-<a href="{{url_for('static', filename='media/taisei_20120803_19-53.png')}}">
-<img width="{{ width }}" height="{{ height }}" src="{{url_for('static', filename='media/' + name)}}" alt="{{ desc }}" /></a>
+<a href="{{url_for('static', filename='screenshots/'+name)}}">
+<img class="screen" width="{{ width }}" height="{{ height }}" src="{{url_for('static', filename='screenshots/' + name)}}" alt="{{ desc }}" /></a>
 {%- endmacro %}
 
 {% block content %}
 <h1>Media</h1>
-
-{% for caption, shots in [
-    ('Development', [
-        'taisei_20120803_19-53.png',
-        'taisei_kurumi.png',
-        'taisei_mansion.png',
-        'taisei_models.png'
-    ]),
-    ('Ancient Times', [
-        'taisei_multbg.png',
-        'wasser.png',
-        'taisei_mainmenu.png',
-        'taisei0_boss.png'
-    ]),
-    ('Really Ancient Times', [
-        'openth2.png',
-        'openth3.png',
-        'openth.png'
-    ])
-] %}
-<h2>{{ caption }}</h2><br />
+<p>This is a little collection of in-game screenshots. They range back from the very beginnings of the projects to today. As you can see, some progress has been made. ;)</p>
+<p>There is much more to see, but we won’t reveal it all in this section. So go play the game yourself and explore the different levels, bosses and most importantly: The bullet patterns!</p>
+{% for _, caption, fn, shots in dirs %}
+<h2 class="screen_caption">{{ caption }}</h2>
 {% for shot in shots %}
-{{ screenshot(shot) }}<br /><br />
+{{ screenshot(fn + '/' + shot) }}
 {% endfor %}
 {% endfor %}
-<h2>When Taisei was written in C++ and used Clanlib</h2>
+<h2 class="screen_caption">When Taisei was written in C++ and used Clanlib</h2>
 N/A
 {% endblock %}

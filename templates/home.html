@@ -4,7 +4,7 @@ Taisei Project
 {% endblock %}
 {% block content %}
 
-<div style="float:right;">
+<div style="max-width:40%; float:right;">
     <div style="padding: 0.4em; background:#044;  text-align:center; margin-left:3.5%;">
         <a href="{{url_for('download')}}" style="text-decoration: none; color: #ccc;">
 		<span style="font-size: 1.55em; font-weight:bold;">Download</span><br />
@@ -13,9 +13,8 @@ Taisei Project
     </div>
     <img src="{{url_for('static', filename='youmu.png')}}" alt="Youmu" />
 </div>
-<img id="slideshow" width="400" height="300" title="Kurumi" alt="Kurumi" src="{{url_for('static', filename='screenshots/004_1.1/taisei_20170404_15-20-49_CEST.png')}}" />
+<img style="max-width:60%;" title="Iku" alt="Example In-game Screenshot" src="{{url_for('static', filename='screenshots/004_1.1/taisei_20170404_15-20-49_CEST.png')}}" />
 <br />
-<span style="clear: both;"/><br />
 <h2>What is Taisei?</h2>
 <p>
 Taisei (lit. Occident) is a fan-made Open Source clone of the <a href="https://en.wikipedia.org/wiki/Touhou_Project">Touhou series</a>, written in C using SDL/OpenGL.
@@ -31,6 +30,6 @@ You can
 <ul>
 	<li>visit <a href="irc://irc.freenode.net:6667/taisei-project">#taisei-project</a> on Freenode</li>
 	<li>create an issue on <a href="https://github.com/laochailan/taisei">Github</a> (You don’t have to be a developer to do this).</li>
-	<li>write <tt>Laochailan &lt;laochailan[at]web.de&gt;</tt> a mail.</tt>
+	<li>write <kbd>Laochailan &lt;laochailan[at]web.de&gt;</kbd> a mail.
 </ul>
 {% endblock %}

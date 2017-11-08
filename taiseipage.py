@@ -80,7 +80,7 @@ def newsfeed():
                     feed_url=request.url, url=request.url_root)
     for article in news:
         date = datetime.datetime.strptime(article[0],'%Y-%m-%d %H:%M')
-        feed.add(article[1], unicode(article[2]),
+        feed.add(article[1], article[2],
                  content_type='html',
                  author="Taisei team",
                  url=make_external("/news/"+article[3]),

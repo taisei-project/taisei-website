@@ -38,3 +38,16 @@ hr {
     background: url("feed-icon-14x14.png") no-repeat 0 50%;
     float:right;
 }
+
+.code-hidden {
+    background: #333333;
+    border: 1px solid #777777;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding: 1em;
+    display: none;
+}
+
+.code-hidden:target {
+    display: block;
+}

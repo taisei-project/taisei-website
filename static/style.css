@@ -30,15 +30,14 @@ a:visited { color: #2C92E7; }
 .screen_caption { clear:both; padding-top:2em;}
 
 hr {
-	margin-top:2em;
-	margin-bottom:2em;
-	border: 1px solid;
-	
+    margin-top:2em;
+    margin-bottom:2em;
+    border: 1px solid;
 }
 
 .feed {
-  margin-left: 3px;
-  padding: 0 0 0 19px;
-  background: url("feed-icon-14x14.png") no-repeat 0 50%;
-  float:right;
+    margin-left: 3px;
+    padding: 0 0 0 19px;
+    background: url("feed-icon-14x14.png") no-repeat 0 50%;
+    float:right;
 }

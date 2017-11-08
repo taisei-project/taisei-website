@@ -1,9 +1,9 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 from flask import Flask, url_for, Markup
 from flask import render_template
 from flask import request
-from urlparse import urljoin
+from urllib.parse import urljoin
 from werkzeug.contrib.atom import AtomFeed
 import datetime
 import os
@@ -32,7 +32,7 @@ def load_news_file(filename):
     f = open(filename, 'r');
     date = f.readline().strip('\n')
     title = f.readline().strip('\n')
-    content = f.read().decode('utf8')
+    content = f.read()
     content = Markup(markdown.markdown(content))
     f.close()
     return (date, title, content, filename)

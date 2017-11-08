@@ -1,21 +1,28 @@
 {% extends "main.html" %}
 {% block title %}Media{% endblock %}
 
-{% macro screenshot(name, desc='Taisei Screenshot', width=400, height=300) -%}
+{% macro screenshot(name, desc='Taisei Screenshot', width=400, height=300) %}
 <a href="{{url_for('static', filename='screenshots/'+name)}}">
 <img class="screen" width="{{ width }}" height="{{ height }}" src="{{url_for('static', filename='screenshots/' + name)}}" alt="{{ desc }}" /></a>
-{%- endmacro %}
+{% endmacro %}
 
 {% block content %}
-<h1>Media</h1>
-<p>This is a little collection of in-game screenshots. They range back from the very beginnings of the projects to today. As you can see, some progress has been made. ;)</p>
-<p>There is much more to see, but we won’t reveal it all in this section. So go play the game yourself and explore the different levels, bosses and most importantly: The bullet patterns!</p>
-{% for _, caption, fn, shots in dirs %}
-<h2 class="screen_caption">{{ caption }}</h2>
-{% for shot in shots %}
-{{ screenshot(fn + '/' + shot) }}
-{% endfor %}
-{% endfor %}
-<h2 class="screen_caption">When Taisei was written in C++ and used Clanlib</h2>
-N/A
+            <h1>Media</h1>
+            <p>
+                This is a little collection of in-game screenshots.
+                They range back from the very beginnings of the projects to today.
+                As you can see, some progress has been made. ;)
+            </p>
+            <p>
+                There is much more to see, but we won’t reveal it all in this
+                section. So go play the game yourself and explore the different
+                levels, bosses and most importantly: The bullet patterns!</p>
+            {% for _, caption, fn, shots in dirs %}
+            <h2 class="screen_caption">{{ caption }}</h2>
+            {% for shot in shots %}
+            {{ screenshot(fn + '/' + shot)|indent(4*3)|safe }}
+            {% endfor %}
+            {% endfor %}
+            <h2 class="screen_caption">When Taisei was written in C++ and used Clanlib</h2>
+            N/A
 {% endblock %}

@@ -10,26 +10,14 @@ import os
 import markdown
 
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 news_dir = 'news'
 screens_dir = 'static/screenshots'
 
-class NavEntry():
-    def __init__(self, name, href):
-        self.href = href
-        self.name = name
-
-def get_navigation():
-    return [
-        NavEntry('Home', url_for('index')),
-        NavEntry('News', url_for('news')),
-        NavEntry('Media', url_for('media')),
-        NavEntry('Github', 'http://github.com/laochailan/taisei'),
-        NavEntry('Download', url_for('download'))
-    ]
-
 def load_news_file(filename):
-    f = open(filename, 'r');
+    f = open(os.path.join(news_dir, filename), 'r');
     date = f.readline().strip('\n')
     title = f.readline().strip('\n')
     content = f.read()
@@ -42,7 +30,7 @@ def load_news():
     l = os.listdir(news_dir)
 
     for fn in l:
-        news.append(load_news_file(news_dir+'/'+fn))
+        news.append(load_news_file(fn))
 
     news.sort(key=lambda x: x[0])
     news.reverse()
@@ -54,7 +42,7 @@ def load_screendirs():
 
     for fn in l:
         num, caption = fn.split("_")
-        screens = os.listdir(screens_dir+'/'+fn)
+        screens = os.listdir(os.path.join(screens_dir, fn))
         dirs.append((int(num), caption, fn, screens))
 
     dirs.sort(key=lambda x: x[0])
@@ -67,11 +55,11 @@ def make_external(url):
 
 @app.route('/')
 def index():
-    return render_template('home.html', navigation=get_navigation())
+    return render_template('home.html')
 
 @app.route('/news')
 def news():
-    return render_template('news.html', navigation=get_navigation(), news=load_news())
+    return render_template('news.html', news=load_news())
 
 @app.route('/news.atom')
 def newsfeed():
@@ -91,18 +79,18 @@ def newsfeed():
 
 @app.route('/news/<filename>')
 def news_entry(filename):
-    news = load_news_file(news_dir+'/'+filename)
+    news = load_news_file(filename)
 
-    return render_template('news_entry.html', navigation=get_navigation(), content=news)
+    return render_template('news_entry.html', content=news)
 
 @app.route('/media')
 def media():
     dirs = load_screendirs()
-    return render_template('media.html', navigation=get_navigation(), dirs=dirs)
+    return render_template('media.html', dirs=dirs)
 
 @app.route('/download')
 def download():
-    return render_template('download.html', navigation=get_navigation())
+    return render_template('download.html')
 
 if __name__ == "__main__":
     app.debug = True

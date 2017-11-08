@@ -1,13 +1,18 @@
 {% extends "main.html" %}
 {% block title %}News{% endblock %}
+
 {% block content %}
-<a href="/news.atom" class="feed">News feed</a>
-<h1>News</h1>
-{% for n in news %}
-<div class="article">
-<div class="a_header">
-<span class="a_title"><a href="{{n[3]}}">{{n[1]}}</a></span>
-<span class="a_date">{{n[0]}}</span>
-</div><span class="a_content">{{n[2]}}</span></div>
-{% endfor %}
+            <a href="/news.atom" class="feed">News feed</a>
+            <h1>News</h1>
+            {% for n in news %}
+            <div class="article">
+                <div class="a_header">
+                    <span class="a_title"><a href="{{n[3]}}">{{n[1]}}</a></span>
+                    <span class="a_date">{{n[0]}}</span>
+                </div>
+                <span class="a_content">
+                    {{n[2]|indent(4*5)|safe}}
+                </span>
+            </div>
+            {% endfor %}
 {% endblock %}

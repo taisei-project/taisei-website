@@ -92,6 +92,13 @@ def media():
 def download():
     return render_template('download.html')
 
+@app.template_filter('indent')
+def indent_filter(s, width, *args):
+    # incomplete reimplementation of the default 'indent' filter
+    # because apparently it doesn't work with 'safe' correctly
+    first, *rest = s.split('\n')
+    return ('\n').join([first] + [' ' * width + s for s in rest])
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

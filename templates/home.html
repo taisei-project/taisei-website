@@ -6,7 +6,7 @@
                 <div style="padding: 0.4em; background:#044;  text-align:center; margin-left:3.5%;">
                     <a href="{{url_for('download')}}" style="text-decoration: none; color: #ccc;">
                         <span style="font-size: 1.55em; font-weight:bold;">Download</span><br />
-                        <span>Current Version: <b>v1.1.1</b></span>
+                        <span>Current Version: <b>v{{ latest_version() }}</b></span>
                     </a>
                 </div>
                 <img src="{{url_for('static', filename='youmu.png')}}" alt="Youmu" />

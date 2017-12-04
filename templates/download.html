@@ -68,7 +68,7 @@
             <p>Debian</p>
             {{ deb_help("Debian 9.0", stable)|indent(4*3)|safe }}
             <p>Fedora</p>
-            {% for distro in ["Fedora 26", "Fedora Rawhide"] %}
+            {% for distro in ["Fedora 26", "Fedora 27", "Fedora Rawhide"] %}
             {{ fedora_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             <p>openSUSE</p>

@@ -4,8 +4,17 @@
 {% macro arch_help(stable) %}
 <p><a href="#obs_arch{% if stable %}_stable{% endif %}">Arch Linux</a></p>
 <div class="code-hidden" id="obs_arch{% if stable %}_stable{% endif %}">
-    [taisei_{% if stable %}stable{% else %}dev{% endif %}]<br/>
+    Edit /etc/pacman.conf:<br/>
+    <br/>
+    [home_lachs0r_taisei_{% if stable %}stable_{% endif %}Arch_Extra]<br/>
+    SigLevel = Never<br/>
     Server = https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/Arch_Extra/$arch
+    <br/>
+    <br/>
+    Run as root:<br/>
+    <br/>
+    pacman -Syu<br/>
+    pacman -S home_lachs0r_taisei_{% if stable %}stable_{% endif %}Arch_Extra/taisei
 </div>
 {% endmacro %}
 

@@ -1,23 +1,6 @@
 {% extends "main.html" %}
 {% block title %}Download{% endblock %}
 
-{% macro arch_help(stable) %}
-<p><a href="#obs_arch{% if stable %}_stable{% endif %}">Arch Linux</a></p>
-<div class="code-hidden" id="obs_arch{% if stable %}_stable{% endif %}">
-    Edit /etc/pacman.conf:<br/>
-    <br/>
-    [home_lachs0r_taisei_{% if stable %}stable_{% endif %}Arch_Extra]<br/>
-    SigLevel = Never<br/>
-    Server = https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/Arch_Extra/$arch
-    <br/>
-    <br/>
-    Run as root:<br/>
-    <br/>
-    pacman -Syu<br/>
-    pacman -S home_lachs0r_taisei_{% if stable %}stable_{% endif %}Arch_Extra/taisei
-</div>
-{% endmacro %}
-
 {% macro deb_help(distro, stable) %}
 <a href="#{{ distro|replace("/","_") }}{% if stable %}_stable{% endif %}">{{ distro|replace("xUbuntu ", "")|replace("Debian ", "") }}</a>
 <div class="code-hidden" id="{{ distro|replace("/","_") }}{% if stable %}_stable{% endif %}">
@@ -74,9 +57,6 @@
             We also provide packages for a variety of distributions at Open Build Service.
             {% for title, stable in [("Stable", True), ("Development Snapshots", False)] %}
             <h4>{{ title }}</h4>
-            {{ arch_help(stable)|indent(4*3)|safe }}
-            <p>Debian</p>
-            {{ deb_help("Debian 9.0", stable)|indent(4*3)|safe }}
             <p>Fedora</p>
             {% for distro in ["Fedora 26", "Fedora 27", "Fedora Rawhide"] %}
             {{ fedora_help(distro, stable)|indent(4*3)|safe }}
@@ -84,15 +64,13 @@
             <p>openSUSE</p>
             {% for distro in [
                 "openSUSE Tumbleweed",
-                "openSUSE Leap 42.3", "openSUSE Leap 42.3 Ports",
-                "openSUSE Leap 42.2", "openSUSE Leap 42.2 Ports",
                 "openSUSE Factory ARM",
                 "openSUSE Factory PowerPC",
             ] %}
             {{ suse_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             <p>Ubuntu</p>
-            {% for distro in ["xUbuntu 17.10", "xUbuntu 17.04"] %}
+            {% for distro in ["xUbuntu 17.10"] %}
             {{ deb_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             {% endfor %}

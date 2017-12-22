@@ -63,6 +63,10 @@
             {% for distro in ["Fedora 26", "Fedora 27", "Fedora Rawhide"] %}
             {{ fedora_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
+            <p>Mageia</p>
+            {% for distro in ["Mageia 6"] %}
+            {{ fedora_help(distro, stable)|indent(4*3)|safe }}
+            {% endfor %}
             <p>openSUSE</p>
             {% for distro in [
                 "openSUSE Tumbleweed",

@@ -6,13 +6,12 @@
                 <div style="padding: 0.4em; background:#044;  text-align:center; margin-left:3.5%;">
                     <a href="{{url_for('download')}}" style="text-decoration: none; color: #ccc;">
                         <span style="font-size: 1.55em; font-weight:bold;">Download</span><br />
-                        <span>Current Version: <b>v{{ latest_version() }} (old)</b></span>
+                        <span>Current Version: <b>v{{ latest_version() }} (NEW!)</b></span>
                     </a>
                 </div>
                 <img src="{{url_for('static', filename='youmu.png')}}" alt="Youmu" />
             </div>
-            <img style="max-width:60%;" title="Iku" alt="Example In-game Screenshot" src="{{url_for('static', filename='screenshots/004_1.1/taisei_20170404_15-20-49_CEST.png')}}" />
-            <br />
+            <style>.embed-container { position: relative; padding-bottom: 40%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/rZJeAu2LdA4' frameborder='0' allowfullscreen><a href="https://www.youtube.com/embed/rZJeAu2LdA4">Gameplay video by Ultroloth</a></iframe></div>
             <h2>What is Taisei?</h2>
             <p>
                 Taisei (lit. Occident) is a fan-made Open Source clone of the

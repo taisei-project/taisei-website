@@ -92,6 +92,10 @@ def media():
 def download():
     return render_template('download.html')
 
+@app.route('/license')
+def license():
+    return render_template('license.html')
+
 @app.template_filter('indent')
 def indent_filter(s, width, *args):
     # incomplete reimplementation of the default 'indent' filter

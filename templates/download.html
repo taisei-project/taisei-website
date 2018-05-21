@@ -60,7 +60,7 @@
             <p>Debian</p>
             {{ deb_help("Debian 9.0", stable)|indent(4*3)|safe }}
             <p>Fedora</p>
-            {% for distro in ["Fedora 26", "Fedora 27", "Fedora Rawhide"] %}
+            {% for distro in ["Fedora 26", "Fedora 27", "Fedora 28", "Fedora Rawhide"] %}
             {{ fedora_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             <p>Mageia</p>
@@ -77,7 +77,7 @@
             {{ suse_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             <p>Ubuntu</p>
-            {% for distro in ["xUbuntu 17.10", "xUbuntu 17.04"] %}
+            {% for distro in ["xUbuntu 17.10", "xUbuntu 17.04", "xUbuntu 18.04"] %}
             {{ deb_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             {% endfor %}

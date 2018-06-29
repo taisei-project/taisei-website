@@ -77,7 +77,7 @@
             {{ suse_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             <p>Ubuntu</p>
-            {% for distro in ["xUbuntu 17.10", "xUbuntu 17.04", "xUbuntu 18.04"] %}
+            {% for distro in ["xUbuntu 17.10", "xUbuntu 18.04"] %}
             {{ deb_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             {% endfor %}

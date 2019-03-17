@@ -57,26 +57,12 @@
             We also provide packages for a variety of distributions at Open Build Service.
             {% for title, stable in [("Stable", True), ("Development Snapshots", False)] %}
             <h4>{{ title }}</h4>
-            <p>Debian</p>
-            {{ deb_help("Debian 9.0", stable)|indent(4*3)|safe }}
-            <p>Fedora</p>
-            {% for distro in ["Fedora 26", "Fedora 27", "Fedora 28", "Fedora Rawhide"] %}
-            {{ fedora_help(distro, stable)|indent(4*3)|safe }}
-            {% endfor %}
-            <p>Mageia</p>
-            {% for distro in ["Mageia 6"] %}
-            {{ fedora_help(distro, stable)|indent(4*3)|safe }}
-            {% endfor %}
             <p>openSUSE</p>
             {% for distro in [
                 "openSUSE Tumbleweed",
                 "openSUSE Leap 15.0",
             ] %}
             {{ suse_help(distro, stable)|indent(4*3)|safe }}
-            {% endfor %}
-            <p>Ubuntu</p>
-            {% for distro in ["xUbuntu 17.10", "xUbuntu 18.04"] %}
-            {{ deb_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}
             {% endfor %}
             <hr />

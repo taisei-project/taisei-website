@@ -57,10 +57,17 @@
             We also provide packages for a variety of distributions at Open Build Service.
             {% for title, stable in [("Stable", True), ("Development Snapshots", False)] %}
             <h4>{{ title }}</h4>
+            <p>Debian</p>
+            {{ deb_help("Debian Testing", stable)|indent(4*3)|safe }}
+            <p>Fedora</p>
+            {% for distro in ["Fedora 29"] %}
+            {{ fedora_help(distro, stable)|indent(4*3)|safe }}
+            {% endfor %}
             <p>openSUSE</p>
             {% for distro in [
                 "openSUSE Tumbleweed",
                 "openSUSE Leap 15.0",
+                "openSUSE Leap 15.1",
             ] %}
             {{ suse_help(distro, stable)|indent(4*3)|safe }}
             {% endfor %}

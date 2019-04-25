@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask, url_for, Markup
-from flask import render_template
+from flask import render_template, redirect
 from flask import request
 from urllib.parse import urljoin
 from werkzeug.contrib.atom import AtomFeed
@@ -16,6 +16,7 @@ app.jinja_env.lstrip_blocks = True
 news_dir = 'news'
 screens_dir = 'static/screenshots'
 
+
 def load_news_file(filename):
     f = open(os.path.join(news_dir, filename), 'r');
     date = f.readline().strip('\n')
@@ -24,6 +25,7 @@ def load_news_file(filename):
     content = Markup(markdown.markdown(content))
     f.close()
     return (date, title, content, filename)
+
 
 def load_news():
     news = []
@@ -35,6 +37,7 @@ def load_news():
     news.sort(key=lambda x: x[0])
     news.reverse()
     return news
+
 
 def load_screendirs():
     dirs = []
@@ -50,16 +53,20 @@ def load_screendirs():
 
     return dirs
 
+
 def make_external(url):
     return urljoin(request.url_root, url)
+
 
 @app.route('/')
 def index():
     return render_template('home.html')
 
+
 @app.route('/news')
 def news():
     return render_template('news.html', news=load_news())
+
 
 @app.route('/news.atom')
 def newsfeed():
@@ -67,7 +74,7 @@ def newsfeed():
     feed = AtomFeed('The State of Taisei',
                     feed_url=request.url, url=request.url_root)
     for article in news:
-        date = datetime.datetime.strptime(article[0],'%Y-%m-%d %H:%M')
+        date = datetime.datetime.strptime(article[0], '%Y-%m-%d %H:%M')
         feed.add(article[1], article[2],
                  content_type='html',
                  author="Taisei team",
@@ -83,18 +90,37 @@ def news_entry(filename):
 
     return render_template('news_entry.html', content=news)
 
+
 @app.route('/media')
 def media():
     dirs = load_screendirs()
     return render_template('media.html', dirs=dirs)
 
+
 @app.route('/download')
-def download():
+def download(filename=None):
     return render_template('download.html')
+
+
+@app.route('/play')
+def play():
+    return redirect("https://play.taisei-project.org/", code=301)
+
+
+@app.route('/discord')
+def discord():
+    return redirect("https://discord.gg/JEHCMzW", code=302)
+
+
+@app.route('/code')
+def code():
+    return redirect("https://github.com/taisei-project/taisei", code=301)
+
 
 @app.route('/license')
 def license():
     return render_template('license.html')
+
 
 @app.template_filter('indent')
 def indent_filter(s, width, *args):
@@ -102,6 +128,7 @@ def indent_filter(s, width, *args):
     # because apparently it doesn't work with 'safe' correctly
     first, *rest = s.split('\n')
     return ('\n').join([first] + [' ' * width + s for s in rest])
+
 
 if __name__ == "__main__":
     app.debug = True

@@ -13,6 +13,24 @@ a:visited { color: #2C92E7; }
 #footer { margin-top: 0.2em; text-align: center; color: #333; }
 #footer a { color: #333; text-decoration: none; font-weight: bold; }
 
+div.big-button {
+    padding: 0.4em;
+    background: #044;
+    text-align: center;
+    margin-left: 3.5%;
+    margin-bottom: 3.5%;
+}
+
+a.big-button {
+    text-decoration: none;
+    color: #ccc;
+}
+
+.big-button-label {
+    font-size: 1.55em;
+    font-weight: bold;
+}
+
 /* news */
 .article { margin-bottom: 30px; }
 .a_header { border-bottom: 1px #444 solid; margin-bottom: 0.5em; }
@@ -46,8 +64,25 @@ hr {
     white-space: nowrap;
     padding: 1em;
     display: none;
+    font-family: monospace, monospace;
 }
 
 .code-hidden:target {
     display: block;
+}
+
+.embed-container {
+    position: relative;
+    padding-bottom: 40%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.embed-container iframe, .embed-container object, .embed-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }

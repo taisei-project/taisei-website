@@ -3,7 +3,7 @@
 
 {% macro screenshot(name, desc='Taisei Screenshot', width=400, height=300) %}
 <a href="{{url_for('static', filename='screenshots/'+name)}}">
-<img class="screen" width="{{ width }}" height="{{ height }}" src="{{url_for('static', filename='screenshots/' + name)}}" alt="{{ desc }}" /></a>
+<img class="screen" width="{{ width }}" height="{{ height }}" src="{{url_for('static', filename='screenshots/thumb/' + name.replace('.png', '.jpg') )}}" alt="{{ desc }}" /></a>
 {% endmacro %}
 
 {% block content %}

@@ -41,9 +41,11 @@ def load_news():
 
 def load_screendirs():
     dirs = []
-    l = os.listdir(screens_dir)
 
-    for fn in l:
+    for fn in os.listdir(screens_dir):
+        if fn == 'thumb':
+            continue
+
         num, caption = fn.split("_")
         screens = os.listdir(os.path.join(screens_dir, fn))
         dirs.append((int(num), caption, fn, screens))

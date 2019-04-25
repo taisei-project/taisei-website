@@ -2,34 +2,38 @@
 {% block title %}Download{% endblock %}
 
 {% macro deb_help(distro, stable) %}
-<a href="#{{ distro|replace("/","_") }}{% if stable %}_stable{% endif %}">{{ distro|replace("xUbuntu ", "")|replace("Debian ", "") }}</a>
-<div class="code-hidden" id="{{ distro|replace("/","_") }}{% if stable %}_stable{% endif %}">
+<li>
+<a href="#{{ distro|replace("/","_")|replace(" ","_") }}{% if stable %}_stable{% endif %}">{{ distro }}</a>
+<div class="code-hidden" id="{{ distro|replace("/","_")|replace(" ","_") }}{% if stable %}_stable{% endif %}">
     sudo add-apt-repository "deb https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/ ./"<br/>
     wget -q -O- https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/Release.key | sudo apt-key add -<br/>
     sudo apt-get update<br/>
     sudo apt-get install taisei
 </div>
+</li>
 {% endmacro %}
 
 {% macro suse_help(distro, stable) %}
-<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{% if "Ports" in distro %}(ARM){% else %}{{ distro|replace("openSUSE ", "") }}{% endif %}</a>
+<li>
+<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{% if "Ports" in distro %}(ARM){% else %}{{ distro }}{% endif %}</a>
 <div class="code-hidden" id="{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">
     zypper ar -fr https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     zypper in taisei
 </div>
+</li>
 {% endmacro %}
 
 {% macro fedora_help(distro, stable) %}
-<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{{ distro|replace("Fedora ", "") }}</a>
+<li>
+<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{{ distro }}</a>
 <div class="code-hidden" id="{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">
     dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     dnf install taisei
 </div>
+</li>
 {% endmacro %}
 
-{% macro release_url_prefix() %}
-https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() }}
-{% endmacro %}
+{% macro release_url_prefix() %}https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() }}{% endmacro %}
 
 {% block content %}
             <h1>Download</h1>
@@ -40,6 +44,7 @@ https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() 
             </p>
             <p>If you find any mistakes, please contact us.</p>
             <hr />
+
             <h2 id="windows">Windows</h2>
             <h3>Stable</h3>
             <ul>
@@ -50,7 +55,9 @@ https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() 
                 <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-windows-x86.zip">v{{ latest_version() }} 32-bit (zip)</a></li>
             </ul>
             <p>If in doubt, try the 64-bit installer first.</p>
+
             <hr />
+
             <h2 id="linux">Linux</h2>
             <h3>Arch Linux</h3>
             <p>
@@ -60,23 +67,33 @@ https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() 
             </p>
             <h3>Open Build Service</h3>
             We also provide packages for a variety of distributions at Open Build Service.
+
             {% for title, stable, suffix in [("Stable", True, ":stable"), ("Development Snapshots", False, "")] %}
             <h4><a href="https://build.opensuse.org/project/show/home:lachs0r:taisei{{ suffix }}">{{ title }}</a></h4>
-            <p>Debian</p>
-            {{ deb_help("Debian Testing", stable)|indent(4*3)|safe }}
-            <p>Fedora</p>
-            {% for distro in ["Fedora 29"] %}
-            {{ fedora_help(distro, stable)|indent(4*3)|safe }}
+
+            <ul>
+                {{ deb_help("Debian Testing", stable)|indent(4*4)|safe }}
+            </ul>
+
+            <ul>
+                {% for distro in ["Fedora 29"] %}
+                {{ fedora_help(distro, stable)|indent(4*4)|safe }}
+                {% endfor %}
+            </ul>
+
+            <ul>
+                {% for distro in [
+                    "openSUSE Tumbleweed",
+                    "openSUSE Leap 15.0",
+                    "openSUSE Leap 15.1",
+                ] %}
+                {{ suse_help(distro, stable)|indent(4*4)|safe }}
+                {% endfor %}
+            </ul>
+
             {% endfor %}
-            <p>openSUSE</p>
-            {% for distro in [
-                "openSUSE Tumbleweed",
-                "openSUSE Leap 15.0",
-                "openSUSE Leap 15.1",
-            ] %}
-            {{ suse_help(distro, stable)|indent(4*3)|safe }}
-            {% endfor %}
-            {% endfor %}
+            <h3>Flatpack</h3>
+            <p>An <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">unofficial package</a> is available on Flathub.</p>
             <hr />
             <h2 id="macos">macOS</h2>
             <ul>

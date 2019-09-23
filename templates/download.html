@@ -100,6 +100,14 @@
             {% endfor %}
             <h3>Flatpack</h3>
             <p>An <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">unofficial package</a> is available on Flathub.</p>
+            <h3>Static build</h3>
+            <ul>
+                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-linux-x86_64.tar.xz">v{{ latest_version() }} x86-64 (glibc 2.24 or later)</a></li>
+            </ul>
+            <p>
+                This is a relocatable, (mostly) statically-linked build that should work on most glibc-based Linux distributions without installation.
+                If possible, we recommend using your distribution's package or our OBS repos instead of this.
+            </p>
             <hr />
             <h2 id="macos">macOS</h2>
             <ul>
@@ -113,7 +121,7 @@
                 Feel free to contact us if you have problems.
             </p>
             <p>
-                Although Taisei supports only Linux, macOS, and Windows officially, it's also known to work on FreeBSD and OpenBSD.
+                Although Taisei supports only Linux, macOS, and Windows officially, it's also known to work on BSD systems and Haiku.
                 Generally, it should build and run on any POSIX-compliant OS, given that
                 <a href="https://github.com/taisei-project/taisei/#dependencies">all the dependencies</a> also work there.
             </p>

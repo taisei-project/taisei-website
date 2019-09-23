@@ -8,7 +8,7 @@
         <link rel="shortcut icon" href="/static/favicon.ico" />
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     </head>
-    <body>
+    <body class="background">
         <div id="head"></div>
 
         <div id="nav">
@@ -16,8 +16,8 @@
             <a href="{{ url_for('news') }}">News</a>
             <a href="{{ url_for('media') }}">Media</a>
             <a href="{{ url_for('code') }}">GitHub</a>
-            <a href="{{ url_for('download') }}">Download</a>
-            <a href="{{ url_for('play') }}">Play in browser</a>
+            <a href="{{ url_for('download') }}">Download <span class="subtext">(v{{ latest_version() }})</span></a>
+            <a href="{{ url_for('play') }}">Play in browser <span class="subtext">(Beta)</span></a>
         </div>
 
         <div id="content">

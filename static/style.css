@@ -230,3 +230,21 @@ hr {
 .collapsible-toggle:checked + .collapsible-label {
     text-decoration: underline;
 }
+
+.splitter {
+    display: table;
+    width: 100%;
+}
+
+.splitter-pane {
+    display: table-cell;
+    width: 50%;
+}
+
+.splitter-pane-content {
+    padding: 0 0.5em;
+}
+
+li {
+    margin-block-end: 0.25em;
+}

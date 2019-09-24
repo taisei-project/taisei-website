@@ -134,7 +134,16 @@ a.big-button {
 
 /* media */
 .screen {
-    float:left;
+    float: left;
+    width: 43.85964912280701754300%;
+    margin: 3.07017543859649122850%;
+    height: auto;
+    transition: transform .2s;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.screen:hover {
+    transform: scale(1.137);
 }
 
 .screen_caption {

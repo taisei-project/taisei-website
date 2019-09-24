@@ -11,14 +11,14 @@
     <body class="background">
         <div id="head"></div>
 
-        <div id="nav">
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('news') }}">News</a>
-            <a href="{{ url_for('media') }}">Media</a>
+        <div id="nav"><div>
+            <a{% if page == "home" %} class="this-page"{% endif %} href="{{ url_for('index') }}">Home</a>
+            <a{% if page == "news" %} class="this-page"{% endif %} href="{{ url_for('news') }}">News</a>
+            <a{% if page == "media" %} class="this-page"{% endif %} href="{{ url_for('media') }}">Media</a>
             <a href="{{ url_for('code') }}">GitHub</a>
-            <a href="{{ url_for('download') }}">Download <span class="subtext">(v{{ latest_version() }})</span></a>
+            <a{% if page == "download" %} class="this-page"{% endif %} href="{{ url_for('download') }}">Download <span class="subtext">(v{{ latest_version() }})</span></a>
             <a href="{{ url_for('play') }}">Play in browser <span class="subtext">(Beta)</span></a>
-        </div>
+        </div></div>
 
         <div id="content">
             {%block content %}{%endblock%}

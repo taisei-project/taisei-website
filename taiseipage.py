@@ -60,14 +60,18 @@ def make_external(url):
     return urljoin(request.url_root, url)
 
 
+def render_template_page(page, *args, **kwargs):
+    return render_template(page + '.html', *args, page=page, **kwargs)
+
+
 @app.route('/')
 def index():
-    return render_template('home.html')
+    return render_template_page('home')
 
 
 @app.route('/news')
 def news():
-    return render_template('news.html', news=load_news())
+    return render_template_page('news', news=load_news())
 
 
 @app.route('/news.atom')
@@ -90,18 +94,18 @@ def newsfeed():
 def news_entry(filename):
     news = load_news_file(filename)
 
-    return render_template('news_entry.html', content=news)
+    return render_template_page('news_entry', content=news)
 
 
 @app.route('/media')
 def media():
     dirs = load_screendirs()
-    return render_template('media.html', dirs=dirs)
+    return render_template_page('media', dirs=dirs)
 
 
 @app.route('/download')
 def download(filename=None):
-    return render_template('download.html')
+    return render_template_page('download')
 
 
 @app.route('/play')
@@ -121,7 +125,7 @@ def code():
 
 @app.route('/license')
 def license():
-    return render_template('license.html')
+    return render_template_page('license')
 
 
 @app.template_filter('indent')

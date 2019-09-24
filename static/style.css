@@ -175,7 +175,7 @@ hr {
     overflow: hidden;
 }
 
-.embed-container iframe, .embed-container object, .embed-container embed {
+.embed-container iframe {
     position: absolute;
     top: 0;
     left: 0;

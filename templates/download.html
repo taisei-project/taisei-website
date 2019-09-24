@@ -1,35 +1,43 @@
 {% extends "main.html" %}
 {% block title %}Download{% endblock %}
 
-{% macro deb_help(distro, stable) %}
+{% macro begin_collapsible(id, label) %}
 <li>
-<a href="#{{ distro|replace("/","_")|replace(" ","_") }}{% if stable %}_stable{% endif %}">{{ distro }}</a>
-<div class="code-hidden" id="{{ distro|replace("/","_")|replace(" ","_") }}{% if stable %}_stable{% endif %}">
+<input class="collapsible-toggle" id="{{ id }}" type="checkbox"/>
+<label class="collapsible-label" for="{{ id }}">{{ label }}</label>
+<div class="collapsible-content"  id="{{ id }}">
+<div class="code-hidden">
+{% endmacro %}
+
+{% macro end_collapsible() %}
+</div>
+</div>
+</li>
+{% endmacro %}
+
+{% macro distro_id(distro, stable) %}{{ ("stable_" if stable else "dev_") + distro|replace("/","_")|replace(" ","_") }}{% endmacro %}
+
+{% macro deb_help(distro, stable) %}
+{{ begin_collapsible(distro_id(distro, stable), distro) }}
     sudo add-apt-repository "deb https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/ ./"<br/>
     wget -q -O- https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/Release.key | sudo apt-key add -<br/>
     sudo apt-get update<br/>
     sudo apt-get install taisei
-</div>
-</li>
+{{ end_collapsible() }}
 {% endmacro %}
 
 {% macro suse_help(distro, stable) %}
-<li>
-<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{% if "Ports" in distro %}(ARM){% else %}{{ distro }}{% endif %}</a>
-<div class="code-hidden" id="{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">
+{{ begin_collapsible(distro_id(distro, stable), distro) }}
     zypper ar -fr https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     zypper in taisei
-</div>
-</li>
+{{ end_collapsible() }}
 {% endmacro %}
 
 {% macro fedora_help(distro, stable) %}
-<li>
-<a href="#{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">{{ distro }}</a>
-<div class="code-hidden" id="{{ distro|replace(" ","_") }}{% if stable %}_stable{% endif %}">
+{{ begin_collapsible(distro_id(distro, stable), distro) }}
     dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     dnf install taisei
-</div>
+{{ end_collapsible() }}
 </li>
 {% endmacro %}
 

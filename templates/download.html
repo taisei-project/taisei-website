@@ -38,7 +38,6 @@
     dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     dnf install taisei
 {{ end_collapsible() }}
-</li>
 {% endmacro %}
 
 {% macro release_url_prefix() %}https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() }}{% endmacro %}
@@ -59,7 +58,8 @@
             <ul>
                 <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-setup-x86_64.exe">v{{ latest_version() }} 64-bit (installer)</a></li>
                 <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-setup-x86.exe">v{{ latest_version() }} 32-bit (installer)</a></li>
-                <br />
+            </ul>
+            <ul>
                 <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-windows-x86_64.zip">v{{ latest_version() }} 64-bit (zip)</a></li>
                 <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-windows-x86.zip">v{{ latest_version() }} 32-bit (zip)</a></li>
             </ul>

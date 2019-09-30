@@ -6,7 +6,7 @@
 <input class="collapsible-toggle" id="{{ id }}" type="checkbox"/>
 <label class="collapsible-label" for="{{ id }}">{{ label }}</label>
 <div class="collapsible-content">
-<div class="code-hidden">
+<div class="codeblock">
 {% endmacro %}
 
 {% macro end_collapsible() %}
@@ -140,7 +140,7 @@
             <h2 id="source">Source Code</h2>
             <p>
                 Building Taisei is easy (unless you are on Windows).
-                Download the source code and follow the instructions in <tt>README.md</tt>.
+                Download the source code and follow the instructions in <code>README.md</code>.
                 Feel free to contact us if you have problems.
             </p>
             <p>
@@ -153,5 +153,7 @@
                 <li><a href="{{ release_url_prefix() }}/taisei-v{{ latest_version() }}.tar.xz">v{{ latest_version() }}</a></li>
             </ul>
             <h3>Unstable</h3>
-            <tt>$ git clone --recurse-submodules -j8 <a href="https://github.com/taisei-project/taisei">https://github.com/taisei-project/taisei</a></tt>
+            <div class="codeblock">
+                git clone --recurse-submodules -j8 <a href="https://github.com/taisei-project/taisei">https://github.com/taisei-project/taisei</a>
+            </div>
 {% endblock %}

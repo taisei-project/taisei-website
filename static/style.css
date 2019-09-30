@@ -176,7 +176,7 @@ hr {
     float: right;
 }
 
-.code-hidden {
+.codeblock {
     background: #333333;
     border: 1px solid #777777;
     overflow-x: scroll;

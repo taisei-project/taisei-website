@@ -4,8 +4,8 @@
     <head>
         <title>{%block title%}{%endblock%} — Taisei Project</title>
         <link rel="alternate" type="application/atom+xml" title="News" href="/news.atom" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?1" />
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     </head>
     <body class="background">

@@ -81,10 +81,6 @@
             <h4><a href="https://build.opensuse.org/project/show/home:lachs0r:taisei{{ suffix }}">{{ title }}</a></h4>
 
             <ul>
-                {{ deb_help("Debian Testing", stable)|indent(4*4)|safe }}
-            </ul>
-
-            <ul>
                 {% for distro in ["Fedora 29"] %}
                 {{ fedora_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
@@ -97,12 +93,6 @@
                     "openSUSE Leap 15.1",
                 ] %}
                 {{ suse_help(distro, stable)|indent(4*4)|safe }}
-                {% endfor %}
-            </ul>
-
-            <ul>
-                {% for distro in ["xUbuntu 19.04"] %}
-                {{ deb_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
             </ul>
             {% endfor %}

@@ -1,14 +1,26 @@
 #!/usr/bin/env python3
 
-from flask import Flask, url_for, Markup
-from flask import render_template, redirect
-from flask import request
-from flask import Response
-from urllib.parse import urljoin
-from feedgen.feed import FeedGenerator
+from flask import (
+    Flask,
+    Markup,
+    Response,
+    redirect,
+    render_template,
+    request,
+    url_for,
+)
+
+from urllib.parse import (
+    urljoin,
+)
+
+from feedgen.feed import (
+    FeedGenerator,
+)
+
 import datetime
-import os
 import markdown
+import os
 
 app = Flask(__name__)
 app.jinja_env.trim_blocks = True

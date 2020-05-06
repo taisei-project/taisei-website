@@ -3,6 +3,7 @@
 from flask import Flask, url_for, Markup
 from flask import render_template, redirect
 from flask import request
+from flask import Response
 from urllib.parse import urljoin
 from feedgen.feed import FeedGenerator
 import datetime
@@ -110,7 +111,7 @@ def newsfeed():
         entry.title(article[1])
         entry.updated(date)
 
-    return feed.atom_str()
+    return Response(feed.atom_str(), mimetype='text/xml')
 
 
 @app.route('/news/<filename>')

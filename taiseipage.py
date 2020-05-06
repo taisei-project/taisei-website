@@ -4,7 +4,7 @@ from flask import Flask, url_for, Markup
 from flask import render_template, redirect
 from flask import request
 from urllib.parse import urljoin
-from werkzeug.contrib.atom import AtomFeed
+from feedgen.feed import FeedGenerator
 import datetime
 import os
 import markdown
@@ -18,7 +18,7 @@ screens_dir = 'static/screenshots'
 
 
 def load_news_file(filename):
-    f = open(os.path.join(news_dir, filename), 'r');
+    f = open(os.path.join(news_dir, filename), 'r')
     date = f.readline().strip('\n')
     title = f.readline().strip('\n')
     content = f.read()
@@ -76,18 +76,41 @@ def news():
 
 @app.route('/news.atom')
 def newsfeed():
+    def makedate(strdate):
+        dt = datetime.datetime.strptime(strdate, '%Y-%m-%d %H:%M')
+        return datetime.datetime(
+            year=dt.year,
+            month=dt.month,
+            day=dt.day,
+            hour=dt.hour,
+            minute=dt.minute,
+            tzinfo=datetime.timezone.utc,
+        )
+
     news = load_news()
-    feed = AtomFeed('The State of Taisei',
-                    feed_url=request.url, url=request.url_root)
+    feed = FeedGenerator()
+    feed.icon(make_external('static/favicon.ico'))
+    feed.id(request.url)
+    feed.language('en-US')
+    feed.link(href=make_external('news'))
+    feed.link(href=request.url, rel='self')
+    feed.title('The State of Taisei')
+    feed.updated(makedate(news[0][0]))
+
     for article in news:
-        date = datetime.datetime.strptime(article[0], '%Y-%m-%d %H:%M')
-        feed.add(article[1], article[2],
-                 content_type='html',
-                 author="Taisei team",
-                 url=make_external("/news/"+article[3]),
-                 updated=date,
-                 published=date)
-    return feed.get_response()
+        date = makedate(article[0])
+        url = make_external("/news/" + article[3])
+
+        entry = feed.add_entry()
+        entry.author(name='Taisei team')
+        entry.content(article[2], type='html')
+        entry.id(url)
+        entry.link(href=make_external("/news/" + article[3]))
+        entry.published(date)
+        entry.title(article[1])
+        entry.updated(date)
+
+    return feed.atom_str()
 
 
 @app.route('/news/<filename>')

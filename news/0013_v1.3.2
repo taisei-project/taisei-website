@@ -1,0 +1,42 @@
+2021-05-01 10:00
+Taisei v1.3.2 Released!
+It's been a long time since the last update, but the project is still alive and well! In fact,
+we're busy working on some large updates for v1.4, which we will post about soon. Unfortunately,
+v1.4 isn't quite finished yet, but today we bring you a long overdue maintenance update for the
+v1.3 branch.
+
+As usual for maintenance releases, it consists of various bug fixes, optimizations, and
+non-gameplay affecting features backported from the v1.4 development tree. As such, v1.3.2
+remains replay-compatible with the original v1.3 release.
+
+A few highlights include:
+
+- **The web version should finally be playable again**. It has been broken for a while due to a
+change in recent Chromium versions, resulting in a black screen in-game. This release finally
+addresses that problem.
+
+- **Fixed some rendering errors**, including the Stage 1 water effect on Intel iGPUs and incorrect
+laser blurring.
+
+- **Fixed major performance issues on macOS with AMD GPUs**. This involved working around a
+long-standing AMD OpenGL driver bug on macOS.
+
+- **Improved support for high-DPI displays**. Taisei should no longer be upscaled by the OS on all
+supported platforms.
+
+- **Slightly optimized various parts of the engine**, including 3D and text rendering.
+
+- **Added GameMode integration on Linux**. If you use Feral Interactive's [GameMode
+daemon](https://github.com/FeralInteractive/gamemode), GameMode will now be automatically activated
+when you start Taisei.
+
+- **Fixed some portability problems**, mostly for macOS, Switch, and Emscripten builds.
+
+- **Updated the SDL game controller database**, enabling out-of-the-box support for even more
+controllers.
+
+Go [grab a download](/download) now or [play it right in your browser](/play), and stay tuned for
+the upcoming v1.4 progress update!
+
+If you're a package maintainer, please also read the [release comment on
+Github](https://github.com/taisei-project/taisei/releases/tag/v1.3.2).

@@ -75,13 +75,13 @@
             PKGBUILDs available on <a href="http://aur.archlinux.org/">AUR</a>.
             </p>
             <h3>Open Build Service</h3>
-            We also provide packages for a variety of distributions at Open Build Service.
+            We also provide packages for some distributions at Open Build Service.
 
             {% for title, stable, suffix in [("Stable", True, ":stable"), ("Development Snapshots", False, "")] %}
             <h4><a href="https://build.opensuse.org/project/show/home:lachs0r:taisei{{ suffix }}">{{ title }}</a></h4>
 
             <ul>
-                {% for distro in ["Fedora 29"] %}
+                {% for distro in ["Fedora 31", "Fedora 32", "Fedora 33", "Fedora Rawhide"] %}
                 {{ fedora_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
             </ul>
@@ -89,8 +89,8 @@
             <ul>
                 {% for distro in [
                     "openSUSE Tumbleweed",
-                    "openSUSE Leap 15.0",
-                    "openSUSE Leap 15.1",
+                    "openSUSE Leap 15.2",
+                    "openSUSE Leap 15.3",
                 ] %}
                 {{ suse_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
@@ -100,7 +100,7 @@
             <p>An <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">unofficial package</a> is available on Flathub.</p>
             <h3>Static build</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-linux-x86_64.tar.xz">v{{ latest_version() }} x86-64 (glibc 2.24 or later)</a></li>
+                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-linux-x86_64.tar.xz">v{{ latest_version() }} x86-64 (glibc 2.27 or later)</a></li>
             </ul>
             <p>
                 This is a relocatable, (mostly) statically-linked build that should work on most glibc-based Linux distributions without installation.
@@ -111,7 +111,7 @@
 
             <h2 id="macos">macOS</h2>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-macOS-x86_64.dmg">v{{ latest_version() }} 64-bit (macOS 10.7 or later required)</a></li>
+                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-macOS-x86_64.dmg">v{{ latest_version() }} 64-bit (macOS 10.9 or later required)</a></li>
             </ul>
 
             <hr />

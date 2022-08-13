@@ -81,20 +81,25 @@
             <h4><a href="https://build.opensuse.org/project/show/home:lachs0r:taisei{{ suffix }}">{{ title }}</a></h4>
 
             <ul>
-                {% for distro in ["Fedora 31", "Fedora 32", "Fedora 33", "Fedora Rawhide"] %}
+                {% for distro in ["Fedora 35", "Fedora 36", "Fedora Rawhide"] %}
                 {{ fedora_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
             </ul>
 
+            {% if not stable %}
             <ul>
                 {% for distro in [
                     "openSUSE Tumbleweed",
-                    "openSUSE Leap 15.2",
                     "openSUSE Leap 15.3",
+                    "openSUSE Leap 15.4",
+                    "openSUSE Factory ARM",
+                    "openSUSE Factory PowerPC",
+                    "openSUSE Factory RISCV",
                 ] %}
                 {{ suse_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
             </ul>
+            {% endif %}
             {% endfor %}
             <h3>Flatpack</h3>
             <p>An <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">unofficial package</a> is available on Flathub.</p>

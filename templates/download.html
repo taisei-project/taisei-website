@@ -82,7 +82,7 @@
 
             {% if stable %}
             <ul>
-                {% for distro in ["Fedora 35", "Fedora 36", "Fedora 37", "Fedora Rawhide"] %}
+                {% for distro in ["Fedora 36", "Fedora 37", "Fedora Rawhide"] %}
                 {{ fedora_help(distro, stable)|indent(4*4)|safe }}
                 {% endfor %}
             </ul>

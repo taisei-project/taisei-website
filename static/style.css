@@ -288,6 +288,6 @@ dd {
     margin-top: 0.5em;
 }
 
-h1, h2, h3, .a_header {
+h1, h2, h3, h4, .a_header {
     font-family: 'Exo 2', Verdana, sans-serif;
 }

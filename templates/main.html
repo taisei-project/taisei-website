@@ -1,4 +1,6 @@
-{% macro latest_version() %}1.3.2{% endmacro %}
+{% set taisei_release_version = '1.3.2' %}
+{% set taisei_prerelease_version = '1.4-dokomi2023-preview-dl' %}
+{% set taisei_prerelease_description = '1.4 (DoKomi 2023 pre-release)' %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +19,7 @@
             <a{% if page == "news" %} class="this-page"{% endif %} href="{{ url_for('news') }}">News</a>
             <a{% if page == "media" %} class="this-page"{% endif %} href="{{ url_for('media') }}">Media</a>
             <a href="{{ url_for('code') }}">GitHub</a>
-            <a{% if page == "download" %} class="this-page"{% endif %} href="{{ url_for('download') }}">Download <span class="subtext">(v{{ latest_version() }})</span></a>
+            <a{% if page == "download" %} class="this-page"{% endif %} href="{{ url_for('download') }}">Download <span class="subtext">(v{{ taisei_release_version }})</span></a>
             <a href="{{ url_for('play') }}">Play in browser <span class="subtext">(Beta)</span></a>
         </div></div>
 

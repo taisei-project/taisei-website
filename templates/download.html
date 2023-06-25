@@ -2,128 +2,153 @@
 {% block title %}Download{% endblock %}
 
 {% macro begin_collapsible(id, label) %}
-<li>
 <input class="collapsible-toggle" id="{{ id }}" type="checkbox"/>
 <label class="collapsible-label" for="{{ id }}">{{ label }}</label>
 <div class="collapsible-content">
-<div class="codeblock">
 {% endmacro %}
 
 {% macro end_collapsible() %}
 </div>
-</div>
-</li>
 {% endmacro %}
 
 {% macro distro_id(distro, stable) %}{{ ("stable_" if stable else "dev_") + distro|replace("/","_")|replace(" ","_") }}{% endmacro %}
 
 {% macro deb_help(distro, stable) %}
+<li>
 {{ begin_collapsible(distro_id(distro, stable), distro) }}
+<div class="codeblock">
     sudo add-apt-repository "deb https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/ ./"<br/>
     wget -q -O- https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/Release.key | sudo apt-key add -<br/>
     sudo apt-get update<br/>
     sudo apt-get install taisei
+</div>
 {{ end_collapsible() }}
+</li>
 {% endmacro %}
 
 {% macro suse_help(distro, stable) %}
+<li>
 {{ begin_collapsible(distro_id(distro, stable), distro) }}
+<div class="codeblock">
     zypper ar -fr https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     zypper in taisei
+</div>
 {{ end_collapsible() }}
+</li>
 {% endmacro %}
 
 {% macro fedora_help(distro, stable) %}
+<li>
 {{ begin_collapsible(distro_id(distro, stable), distro) }}
+<div class="codeblock">
     dnf config-manager --add-repo https://download.opensuse.org/repositories/home:/lachs0r:/taisei{% if stable %}:/stable{% endif %}/{{ distro|replace(" ", "_") }}/home:lachs0r:taisei{% if stable %}:stable{% endif %}.repo<br/>
     dnf install taisei
+</div>
 {{ end_collapsible() }}
+</li>
 {% endmacro %}
 
-{% macro release_url_prefix() %}https://github.com/taisei-project/taisei/releases/download/v{{ latest_version() }}{% endmacro %}
+{% set dl_prefix = 'https://github.com/taisei-project/taisei/releases/download/' %}
+
+{% macro artifact_url(version, suffix) %}{{ dl_prefix }}v{{version}}/Taisei-{{version}}-{{suffix}}{% endmacro %}
+{% macro artifact_link(label, version, suffix) %}
+<a href="{{ artifact_url(version, suffix) }}">{{ label }}</a>
+{% endmacro %}
+
+{% macro source_url(version) %}{{ dl_prefix }}v{{version}}/taisei-{{version}}.tar.xz{% endmacro %}
+
+{% macro release_url_prefix() %}https://github.com/taisei-project/taisei/releases/download/v{{ taisei_release_version }}{% endmacro %}
 
 {% block content %}
             <h1>Download</h1>
             <p>
-                We provide pre-built packages for <a href="#windows">Windows</a>, <a href="#macos">macOS</a>, and some <a href="#linux">Linux</a> distributions.
-                You can also download the <a href="#source">source code</a> and build it yourself,
-                or <a href="https://repology.org/metapackage/taisei/versions">look for a package</a> in your distribution's repositories.
+                We provide pre-built packages for <a href="#windows">Windows</a>, <a href="#macos">macOS</a>, and <a href="#linux">Linux</a>.
+                You can also download the <a href="#source">source code</a> and build it yourself.
             </p>
             <p>If you're looking for PGP signatures, SHA256 sums, or older releases, visit the <a href="https://github.com/taisei-project/taisei/releases">releases page on GitHub</a>.</p>
             <p>If you find any mistakes, please contact us.</p>
             <hr />
 
             <h2 id="windows">Windows</h2>
-            <h3>Stable</h3>
+            
+            <h4>v{{taisei_prerelease_description}}</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-setup-x86_64.exe">v{{ latest_version() }} 64-bit (installer)</a></li>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-setup-x86.exe">v{{ latest_version() }} 32-bit (installer)</a></li>
+                <li>{{ artifact_link("Installer for x86 (64 bit)",   taisei_prerelease_version, "setup-x86_64.exe") }}</li>
+                <li>
+                {{ begin_collapsible("windows-unstable-options", "Other options") }}
+                <ul>
+                <li>{{ artifact_link("Installer for x86 (32 bit)",   taisei_prerelease_version, "setup-x86.exe") }}</li>
+                <li>{{ artifact_link("ZIP archive for x86 (64 bit)", taisei_prerelease_version, "windows-x86_64.zip") }}</li>
+                <li>{{ artifact_link("ZIP archive for x86 (32 bit)", taisei_prerelease_version, "windows-x86.zip") }}</li>
+                </ul>
+                {{ end_collapsible() }}
+                </li>
             </ul>
+            
+            <h4>v{{taisei_release_version}}</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-windows-x86_64.zip">v{{ latest_version() }} 64-bit (zip)</a></li>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-windows-x86.zip">v{{ latest_version() }} 32-bit (zip)</a></li>
+                <li>{{ artifact_link("Installer for x86 (64 bit)",   taisei_release_version, "setup-x86_64.exe") }}</li>
+                <li>
+                {{ begin_collapsible("windows-stable-options", "Other options") }}
+                <ul>
+                <li>{{ artifact_link("Installer for x86 (32 bit)",   taisei_release_version, "setup-x86.exe") }}</li>
+                <li>{{ artifact_link("ZIP archive for x86 (64 bit)", taisei_release_version, "windows-x86_64.zip") }}</li>
+                <li>{{ artifact_link("ZIP archive for x86 (32 bit)", taisei_release_version, "windows-x86.zip") }}</li>
+                </ul>
+                {{ end_collapsible() }}
+                </li>
             </ul>
-            <p>If in doubt, try the 64-bit installer first.</p>
-
+            
             <hr />
 
             <h2 id="linux">Linux</h2>
-            <h3>Arch Linux</h3>
-            <p>
-            There are unofficial <a href="https://aur.archlinux.org/packages/taisei/">taisei</a>
-            and <a href="https://aur.archlinux.org/packages/taisei-git/">taisei-git</a>
-            PKGBUILDs available on <a href="http://aur.archlinux.org/">AUR</a>.
-            </p>
-            <h3>Open Build Service</h3>
-            We also provide packages for some distributions at Open Build Service.
-
-            {% for title, stable, suffix in [("Stable", True, ":stable"), ("Development Snapshots", False, "")] %}
-            <h4><a href="https://build.opensuse.org/project/show/home:lachs0r:taisei{{ suffix }}">{{ title }}</a></h4>
-
-            {% if stable %}
-            <ul>
-                {% for distro in ["Fedora 36", "Fedora 37", "Fedora Rawhide"] %}
-                {{ fedora_help(distro, stable)|indent(4*4)|safe }}
-                {% endfor %}
-            </ul>
-            {% endif %}
-
-            {% if not stable %}
-            <ul>
-                {% for distro in [
-                    "openSUSE Tumbleweed",
-                    "openSUSE Factory ARM",
-                    "openSUSE Factory PowerPC",
-                    "openSUSE Factory RISCV",
-                ] %}
-                {{ suse_help(distro, stable)|indent(4*4)|safe }}
-                {% endfor %}
-            </ul>
-            {% endif %}
-            {% endfor %}
-            <h3>Flatpack</h3>
-            <p>An <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">unofficial package</a> is available on Flathub.</p>
+            <p>If available, it's generally recommended to install Taisei from your distribution's package repositories.</p>
+            <p>You can check which distributions package Taisei <a href="https://repology.org/project/taisei/versions">here</a>.</p>
+            
             <h3>Static build</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-linux-x86_64.tar.xz">v{{ latest_version() }} x86-64 (glibc 2.27 or later)</a></li>
+                <li>{{ artifact_link("v"+taisei_prerelease_description+" for x86-64",   taisei_prerelease_version, "linux-x86_64.tar.xz") }}
+                <br/>glibc 2.29 or later required</li>
+            </ul>
+            <ul>
+                <li>{{ artifact_link("v"+taisei_release_version+" for x86-64",   taisei_release_version, "linux-x86_64.tar.xz") }}
+                <br/>glibc 2.27 or later required</li>
             </ul>
             <p>
                 This is a relocatable, (mostly) statically-linked build that should work on most glibc-based Linux distributions without installation.
-                If possible, we recommend using your distribution's package or our OBS repos instead of this.
+            </p>
+            
+            <h3>Flatpack</h3>
+            <p>
+                A <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">package</a> is available on Flathub.
+                <div class="codeblock">
+                    flatpak install flathub org.taisei_project.Taisei</br>
+                    flatpak run org.taisei_project.Taisei
+                </div>
             </p>
 
             <hr />
 
             <h2 id="macos">macOS</h2>
+            
+            <h4>v{{taisei_prerelease_description}}</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-macOS-x86_64.dmg">v{{ latest_version() }} 64-bit (macOS 10.9 or later required)</a></li>
+                <li>{{ artifact_link("Universal DMG (x86-64 Intel and ARM64 Apple Silicon)", taisei_prerelease_version, "universal.dmg") }}
+                <br/>macOS 10.15 or later required</li>
             </ul>
-
+            
+            <h4>v{{taisei_release_version}}</h3>
+            <ul>
+                <li>{{ artifact_link("DMG for x86-64 (Intel)", taisei_release_version, "macOS-x86_64.dmg") }}
+                <br/>macOS 10.9 or later required</li>
+            </ul>
+            
             <hr />
 
             <h2 id="switch">Switch Homebrew</h2>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/Taisei-{{ latest_version() }}-switch-aarch64.zip">v{{ latest_version() }}</a></li>
+                <li>{{ artifact_link("v"+taisei_prerelease_description, taisei_prerelease_version, "switch-aarch64.zip") }}</li>
+                <li>{{ artifact_link("v"+taisei_release_version, taisei_release_version, "switch-aarch64.zip") }}</li>
             </ul>
             <p>
                 This is a semi-official port for the Switch console. You can also <a href="https://www.switchbru.com/appstore/#/app/Taisei">get it on the Homebrew Appstore</a>.<br/>
@@ -143,11 +168,12 @@
                 Generally, it should build and run on any POSIX-compliant OS, given that
                 <a href="https://github.com/taisei-project/taisei/#dependencies">all the dependencies</a> also work there.
             </p>
-            <h3>Stable</h3>
+            <h3>Release tarballs</h3>
             <ul>
-                <li><a href="{{ release_url_prefix() }}/taisei-v{{ latest_version() }}.tar.xz">v{{ latest_version() }}</a></li>
+                <li><a href="{{ source_url(taisei_prerelease_version) }}">v{{ taisei_prerelease_description }}</a></li>
+                <li><a href="{{ source_url(taisei_release_version) }}">v{{ taisei_release_version }}</a></li>
             </ul>
-            <h3>Unstable</h3>
+            <h3>Latest git snapshot</h3>
             <div class="codeblock">
                 git clone --recurse-submodules -j8 <a href="https://github.com/taisei-project/taisei">https://github.com/taisei-project/taisei</a>
             </div>

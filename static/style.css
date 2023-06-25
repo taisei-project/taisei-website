@@ -28,7 +28,8 @@ a:visited {
 #head {
     height: 165px;
     background: #16a;
-    background: url(banner.png) #002222;
+    background: url(banner.webp) #002222;
+    background-size: auto 50%;
     background-position:center;
     background-repeat: no-repeat;
 }

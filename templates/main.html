@@ -7,21 +7,27 @@
         <title>{%block title%}{%endblock%} — Taisei Project</title>
         <link rel="alternate" type="application/atom+xml" title="News" href="/news.atom" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo%202" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?3" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}?4" />
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
     </head>
     <body class="background">
         <div id="head"></div>
 
-        <div id="nav"><div>
+        <div id="nav">
             <a{% if page == "home" %} class="this-page"{% endif %} href="{{ url_for('index') }}">Home</a>
             <a{% if page == "news" %} class="this-page"{% endif %} href="{{ url_for('news') }}">News</a>
             <a{% if page == "media" %} class="this-page"{% endif %} href="{{ url_for('media') }}">Media</a>
             <a href="{{ url_for('code') }}">GitHub</a>
             <a{% if page == "download" %} class="this-page"{% endif %} href="{{ url_for('download') }}">Download <span class="subtext">(v{{ taisei_release_version }})</span></a>
-            <a href="{{ url_for('play') }}">Play in browser <span class="subtext">(Beta)</span></a>
-        </div></div>
+            <div class="dropdown">
+                <a href="{{ url_for('play') }}">Play in browser <span class="subtext">(Beta)</span></a>
+                <div class="dropdown-content">
+                    <a href="{{ url_for('play') }}">Stable release <span class="subtext">({{ taisei_release_version }})</span></a>
+                    <a href="https://taisei-project.github.io/taisei-web-test">Bleeding edge </a>
+                </div>
+            </div>
+        </div>
 
         <div id="content">
             {%block content %}{%endblock%}

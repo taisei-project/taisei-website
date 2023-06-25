@@ -270,3 +270,10 @@ hr {
 li {
     margin-block-end: 0.25em;
 }
+
+dd {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    margin-left: 0em;
+    margin-top: 0.5em;
+}

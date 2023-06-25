@@ -38,6 +38,7 @@ a:visited {
     padding-top: 0.2em;
     padding-bottom: 0.2em;
     background: #044;
+    font-family: 'Exo 2', Verdana, sans-serif;
     font-size: 15pt;
     text-align: center;
     position: sticky;
@@ -277,4 +278,8 @@ dd {
     font-size: 13px;
     margin-left: 0em;
     margin-top: 0.5em;
+}
+
+h1, h2, h3, .a_header {
+    font-family: 'Exo 2', Verdana, sans-serif;
 }

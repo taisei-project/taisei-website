@@ -17,12 +17,20 @@ tt {
     font-size: 150%;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover  {
+    text-decoration: underline;
+}
+
 a:link {
-    color: #2C92E7;
+    color: #5c99e6;
 }
 
 a:visited {
-    color: #2C92E7;
+    color: #ac99e6;
 }
 
 #head {

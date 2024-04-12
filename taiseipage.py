@@ -2,13 +2,14 @@
 
 from flask import (
     Flask,
-    Markup,
     Response,
     redirect,
     render_template,
     request,
     url_for,
 )
+
+from markupsafe import Markup
 
 from urllib.parse import (
     urljoin,

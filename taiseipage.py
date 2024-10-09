@@ -165,6 +165,11 @@ def license():
     return render_template_page('license')
 
 
+@app.route('/.well-known/org.flathub.VerifiedApps.txt')
+def flathub_token():
+  return Response("4cbf22b7-6cc8-4cc8-b12f-d60b3df9d05b", mimetype='text/plain')
+
+
 @app.template_filter('indent')
 def indent_filter(s, width, *args):
     # incomplete reimplementation of the default 'indent' filter

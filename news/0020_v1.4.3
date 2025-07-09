@@ -1,0 +1,25 @@
+2025-07-10 01:30
+Taisei v1.4.3 Released!
+
+This is yet another maintenance release without any gameplay changes. However, it contains some important
+fixes and rendering backend improvements, especially for Windows and macOS users.
+
+Some key changes are:
+
+- **New rendering backend based on the SDL3-GPU API**. In practice, it means the game will now use the
+modern Vulkan and Metal graphics APIs on Windows and macOS by default, respectively. This greatly improves
+compatibility and performance. On Linux and other systems, OpenGL is still the default, as it's well
+supported and currently more efficient, thanks to the excellent Mesa drivers.
+- **ANGLE mode is gone**, as it is no longer needed due to the previous change.
+- **Fixed a game-breaking bug** that may exist in some builds of the game, causing it to crash on Wriggle's
+"Moonlight Rocket" Spell Card.
+- **Fixed another crash** that occurred when the game window is closed during the game over menu.
+- **32-bit Windows builds are no longer provided**. You can still build them yourself, but this is unsupported.
+All x86 hardware that Taisei could be playable on is 64-bit-capable.
+
+For a more comprehensive list of changes, visit the
+[GitHub release page](https://github.com/taisei-project/taisei/releases/tag/v1.4.3).
+
+As usual, you can find the update in the [downloads section](/download). Note that the update is currently
+not available for the Switch homebrew. The new version depends on SDL3, which has not been fully ported to
+that platform yet.

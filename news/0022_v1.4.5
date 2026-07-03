@@ -1,0 +1,45 @@
+2026-07-03 11:00
+Taisei v1.4.5 Released!
+
+This is a maintenance release that fixes some bugs but also introduces a few features and engine efficiency
+improvements. As usual for maintenance releases, there are no gameplay changes, and v1.4.x series replays should remain
+compatible.
+
+- **Initial localization support**. The game has been translated into **German**, **French**, and **Chinese**. It will
+try to pick the language automatically based on your system's locale, but you can change it manually in the options.
+
+    Translations are provided by the community on a best-effort basis; they may be incomplete and/or inaccurate. If your
+language is missing or you've found a mistake, please feel free to
+[contribute](https://github.com/taisei-project/taisei/issues/414)!
+
+- **Fixed ReimuB crashing the game on macOS**. This was a shader translation bug introduced in v1.4.3 with the SDL_GPU
+renderer.
+
+- **Fixed a few other rare crashes**. The Moonlight Rocket bug, which was only partially addressed in the previous
+version, is now gone for good.
+
+- **Improved compatibility with legacy systems**, especially on Windows. The new SDL_GPU renderer works on some older
+GPUs now and can use either Direct3D 12 or Vulkan. If neither are supported, the game will fall back to the old OpenGL
+renderer instead of crashing.
+
+- **Slightly updated the Stage 5 background**, and rebuilt many texture assets. This change was mostly driven by
+internal engine restructuring.
+
+- **Updated Stage and Spell practice menus**. They look a little nicer now, and the Spell Practice menu displays some
+statistics. We plan to improve them further for v1.5.
+
+- **Fixed high single-core CPU usage** in the framerate limiter. This was a regression introduced in 1.4.3 with the SDL3
+switch.
+
+- **Basic support for the Steam Controller (2026) without Steam**. For full-featured configuration support, we
+recommend adding Taisei as a non-Steam game on Steam.
+
+- **Small internal engine enhancements** to improve efficiency and memory consumption.
+
+- **Added fangame disclaimer** to the main menu screen.
+
+If you're a package maintainer, please check out the
+[GitHub release page](https://github.com/taisei-project/taisei/releases/tag/v1.4.5) for some important notes.
+
+As usual, you can find the update in the [downloads section](/download). Unfortunately, the Switch port remains stuck
+on v1.4.2 for the time being.

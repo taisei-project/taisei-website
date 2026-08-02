@@ -1,0 +1,40 @@
+2026-08-02 18:30
+Taisei v1.4.6 Released!
+
+This is a maintenance release that mostly consists of bug fixes and a few QoL improvements.
+
+- **Use Vulkan by default on Windows**. Previous version used Direct3D 12 by default due to a change in the SDL library,
+which didn't seem to work correctly for many Windows 10 users.
+
+- **Windows version now asks to choose the rendering backend on startup**. This is necessary because we can't provide a
+reliable default and fallback for this platform due to the state of its GPU drivers.
+
+- **Fixed toggling fullscreen from the options menu** causing the game window to rapidly switch back and forth between
+fullscreen and windowed modes.
+
+- **Fixed some minor background rendering errors**, in particular in the non-OpenGL backends.
+
+- **Fixed a crash** that occurred when attempting to enter the Stage Practice menu for a difficulty that the user has
+never played before.
+
+- **Fixed the binary releases not working** on some old CPUs that don't support AVX instructions.
+
+- **The Switch homebrew build is back**.
+
+- **Improved FPS limiter accuracy** on some systems.
+
+- **Fixed "System" language option** always defaulting to English on some systems.
+
+- **Implemented dialogue title cards for bosses**. Better late than never, I suppose.
+
+- **Added options to adjust the background brightness, contrast, and saturation**.
+
+- **Greatly improved visibility of Iku's cloud bullets** in Stage 5.
+
+- **Minor localization improvements**. In particular, the French text now fits within the HUD layout.
+
+- **Made saving progress and configuration more robust**, which should fix rare progress loss when saving is interrupted
+(e.g. due to power loss or forced shutdown).
+
+
+Grab the update from the [downloads section](/download).

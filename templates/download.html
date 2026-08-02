@@ -75,7 +75,7 @@
             <hr />
 
             <h2 id="windows">Windows</h2>
-            
+
             <h4>v{{taisei_release_version}}</h3>
             <ul>
                 <li>{{ artifact_link("Installer for x86 (64 bit)",   taisei_release_version, "setup-x86_64.exe") }}</li>
@@ -87,13 +87,13 @@
                 {{ end_collapsible() }}
                 </li>
             </ul>
-            
+
             <hr />
 
             <h2 id="linux">Linux</h2>
             <p>If available, it's generally recommended to install Taisei from your distribution's package repositories.</p>
             <p>You can check which distributions package Taisei <a href="https://repology.org/project/taisei/versions">here</a>.</p>
-            
+
             <h3>Static build</h3>
             <ul>
                 <li>{{ artifact_link("v"+taisei_release_version+" for x86-64",   taisei_release_version, "linux-x86_64.tar.xz") }}
@@ -102,7 +102,7 @@
             <p>
                 This is a relocatable, (mostly) statically-linked build that should work on most glibc-based Linux distributions without installation.
             </p>
-            
+
             <h3>Flatpak</h3>
             <p>
                 A <a href="https://www.flathub.org/apps/details/org.taisei_project.Taisei">package</a> is available on Flathub.
@@ -115,25 +115,22 @@
             <hr />
 
             <h2 id="macos">macOS</h2>
-            
+
             <h4>v{{taisei_release_version}}</h3>
             <ul>
                 <li>{{ artifact_link("Universal DMG (x86-64 Intel and ARM64 Apple Silicon)", taisei_release_version, "universal.dmg") }}
                 <br/>macOS 10.15 or later required</li>
             </ul>
-            
+
             <hr />
 
             <h2 id="switch">Switch Homebrew</h2>
             <ul>
-                <li>{{ artifact_link("v"+taisei_release_switch_version, taisei_release_switch_version, "switch-aarch64.zip") }}</li>
+                <li>{{ artifact_link("v"+taisei_release_version, taisei_release_version, "switch-aarch64.zip") }}</li>
             </ul>
             <p>
                 This is a semi-official port for the Switch console. You can also <a href="https://www.switchbru.com/appstore/#/app/Taisei">get it on the Homebrew Appstore</a>.<br/>
                 Use at your own risk. Contact <a href="https://twitter.com/p__sam">@p-sam</a> for support.
-            </p>
-            <p>
-                <b>NOTE:</b> This version of the game is currently outdated. Latest Taisei requires SDL3, which has not been fully ported to the Switch homebrew platform yet.
             </p>
 
             <hr />
